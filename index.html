@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>မင်းသမီးထံ ဆက်သသော အချစ်လွှာ | Ancient Burmese Royal Love Letter</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Myanmar Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Pyidaungsu:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tone.js for Soft Ambient Music -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        :root {
+            --royal-gold: #d4af37;
+            --royal-gold-light: #fef0b8;
+            --royal-gold-dark: #99751d;
+            --deep-crimson: #2b0404;
+            --dark-burgundy: #1a0202;
+            --parchment-bg: #f9f0d5;
+            --ruby-red: #7a0c1a;
+        }
+
+        body {
+            background-color: var(--dark-burgundy);
+            background-image: 
+                radial-gradient(circle at 50% 30%, rgba(122, 12, 26, 0.4), transparent 70%),
+                radial-gradient(circle, rgba(212, 175, 55, 0.12) 1px, transparent 1px);
+            background-size: 100% 100%, 35px 35px;
+            color: #2b1704;
+            font-family: 'Padauk', 'Pyidaungsu', serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Particles canvas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Royal Header */
+        .royal-header {
+            text-align: center;
+            padding: 30px 15px 15px;
+            color: var(--royal-gold);
+        }
+
+        .peacock-seal {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)); }
+            100% { transform: scale(1.06); filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.8)); }
+        }
+
+        .royal-title {
+            font-weight: 700;
+            font-size: 2.3rem;
+            background: linear-gradient(45deg, #d4af37, #fff6ca, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .royal-subtitle {
+            font-size: 1.15rem;
+            color: var(--royal-gold-light);
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Kanote Dividers */
+        .kanote-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 12px 0 20px;
+        }
+
+        .kanote-divider::before, .kanote-divider::after {
+            content: "";
+            flex: 1;
+            max-width: 140px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--royal-gold), transparent);
+        }
+
+        .kanote-divider i {
+            margin: 0 12px;
+            color: var(--royal-gold);
+            font-size: 1.2rem;
+        }
+
+        /* Royal Envelope Unveiling Modal/Wrapper */
+        .envelope-wrapper {
+            max-width: 650px;
+            margin: 20px auto;
+            text-align: center;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .envelope-box {
+            background: linear-gradient(135deg, #42060c 0%, #1a0202 100%);
+            border: 3px solid var(--royal-gold);
+            border-radius: 12px;
+            padding: 40px 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.2);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        .envelope-box:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .envelope-seal-btn {
+            background: linear-gradient(135deg, #AA771C, #FFD700, #AA771C);
+            border: none;
+            color: #2b0404;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .envelope-seal-btn:hover {
+            transform: scale(1.08);
+            background: linear-gradient(135deg, #FFD700, #FFF, #FFD700);
+        }
+
+        /* Parchment Scroll Card */
+        .manuscript-scroll {
+            background: #fdf5df;
+            background-image: 
+                radial-gradient(rgba(139, 90, 43, 0.08) 1px, transparent 0),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(122, 12, 26, 0.05));
+            background-size: 24px 24px, 100% 100%;
+            border-radius: 10px;
+            box-shadow: 
+                0 0 25px rgba(0,0,0,0.9),
+                inset 0 0 50px rgba(139, 90, 43, 0.35),
+                inset 0 0 15px rgba(122, 12, 26, 0.3);
+            padding: 45px 35px;
+            position: relative;
+            border: 10px solid transparent;
+            border-image: linear-gradient(to bottom right, #AA771C, #FCF6BA, #B38728, #AA771C) 1;
+            margin-bottom: 30px;
+            display: none; /* revealed via script */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .manuscript-scroll.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ornate Corners */
+        .corner-ornament {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            border: 3px solid var(--royal-gold-dark);
+            pointer-events: none;
+        }
+
+        .corner-top-left { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+        .corner-top-right { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+        .corner-bottom-left { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+        .corner-bottom-right { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+        .royal-stamp-circle {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: 2px dashed var(--royal-gold);
+            background: var(--ruby-red);
+            color: var(--royal-gold);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            margin-bottom: 15px;
+        }
+
+        .manuscript-salutation {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--ruby-red);
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px double var(--royal-gold-dark);
+            padding-bottom: 12px;
+        }
+
+        .manuscript-poem-body {
+            font-size: 1.25rem;
+            line-height: 2.3;
+            color: #2b1704;
+            text-align: center;
+            white-space: pre-wrap;
+            min-height: 260px;
+            font-family: 'Padauk', serif;
+            letter-spacing: 0.3px;
+        }
+
+        /* Editor Section */
+        .editor-card {
+            background: rgba(43, 4, 4, 0.9);
+            border: 2px solid var(--royal-gold-dark);
+            border-radius: 12px;
+            padding: 25px;
+            color: var(--royal-gold-light);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+            backdrop-filter: blur(6px);
+        }
+
+        .editor-card label {
+            color: var(--royal-gold);
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .form-control-royal {
+            background-color: #f9f0d5;
+            border: 2px solid var(--royal-gold-dark);
+            color: #2b1704;
+            font-family: 'Padauk', serif;
+            font-size: 1.1rem;
+            border-radius: 6px;
+        }
+
+        .form-control-royal:focus {
+            background-color: #fff9e6;
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+            color: #1a0f03;
+        }
+
+        /* Custom Action Buttons */
+        .btn-royal {
+            background: linear-gradient(135deg, #AA771C 0%, #D4AF37 50%, #AA771C 100%);
+            color: var(--deep-crimson);
+            font-weight: bold;
+            border: 1px solid var(--royal-gold-light);
+            padding: 10px 22px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        .btn-royal:hover {
+            background: linear-gradient(135deg, #D4AF37 0%, #FCF6BA 50%, #D4AF37 100%);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-royal-outline {
+            background: transparent;
+            color: var(--royal-gold-light);
+            border: 1px solid var(--royal-gold);
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-royal-outline:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: #fff;
+            border-color: var(--royal-gold-light);
+        }
+
+        /* Ambient Audio Floating Pulse Button */
+        .music-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 1000;
+            background: var(--ruby-red);
+            border: 2px solid var(--royal-gold);
+            color: var(--royal-gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        .music-btn.playing {
+            animation: spin 6s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Toast Alert */
+        .toast-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+        }
+
+        .toast-royal {
+            background: var(--deep-crimson);
+            border: 2px solid var(--royal-gold);
+            color: var(--royal-gold-light);
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        .royal-footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--royal-gold);
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        @media print {
+            body { background: white !important; color: black !important; }
+            .no-print, .editor-card, .music-btn, .envelope-wrapper, #particles-js { display: none !important; }
+            .manuscript-scroll {
+                display: block !important;
+                opacity: 1 !important;
+                box-shadow: none !important;
+                border: 4px solid var(--royal-gold-dark) !important;
+                background: #fff !important;
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Gold Dust Ambient Animation Canvas -->
+    <canvas id="particles-js"></canvas>
+
+    <!-- Music Toggle Button -->
+    <button class="music-btn no-print" id="musicToggle" onclick="toggleMusic()" title="နန်းသုံး တေးသံသာ နားဆင်ရန်">
+        <i class="fa-solid fa-music"></i>
+    </button>
+
+    <div class="container main-container py-4">
+        
+        <!-- Header -->
+        <header class="royal-header no-print">
+            <div class="peacock-seal">
+                <i class="fa-solid fa-crow"></i>
+            </div>
+            <h1 class="royal-title">ရွှေမင်းသမီးလေးထံ ဆက်သသော မေတ္တာသဝဏ်လွှာ</h1>
+            <p class="royal-subtitle">မြတ်နိုးရပါသော နန်းမြင့်ဧကရီထံ သို့</p>
+            
+            <div class="kanote-divider">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+        </header>
+
+        <!-- Unveil Envelope Section -->
+        <div class="envelope-wrapper no-print" id="envelopeSection" onclick="unveilScroll()">
+            <div class="envelope-box">
+                <div class="mb-3 text-warning fs-1">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h3 style="color: var(--royal-gold); font-family: 'Padauk', serif;">
+                    ရွှေမေတ္တာသဝဏ်လွှာ
+                </h3>
+                <p class="text-light opacity-75 mb-4">
+                    မြတ်နိုးရပါသော မင်းသမီးလေးထံသို့ ...
+                </p>
+                <button class="envelope-seal-btn">
+                    <i class="fa-solid fa-key me-2"></i> စာလွှာကို ဖွင့်ဖတ်မည်
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Display Content -->
+        <div class="row justify-content-center">
+            
+            <!-- Manuscript Scroll -->
+            <div class="col-lg-7 col-md-12">
+                <div class="manuscript-scroll" id="manuscriptScroll">
+                    <!-- Corner Ornaments -->
+                    <div class="corner-ornament corner-top-left"></div>
+                    <div class="corner-ornament corner-top-right"></div>
+                    <div class="corner-ornament corner-bottom-left"></div>
+                    <div class="corner-ornament corner-bottom-right"></div>
+
+                    <!-- Peacock Royal Crest -->
+                    <div class="text-center">
+                        <div class="royal-stamp-circle">
+                            <i class="fa-solid fa-feather-pointed"></i>
+                        </div>
+                    </div>
+
+                    <!-- Greeting Header -->
+                    <div class="manuscript-salutation" id="displaySalutation">
+                        မြတ်နိုးရပါသော နန်းမြင့်ဧကရီ မင်းသမီးလေးထံသို့...
+                    </div>
+
+                    <!-- Poem Body -->
+                    <div class="manuscript-poem-body" id="displayPoem">
+ဇွန်ပန်းခိုင်ယဉ် …..နန်းညာတင်က ၊ မြသွင်ခြယ်မှုန်း ၊ ဘဝဂ်လုံးသို့ ၊ လွမ်းဖုံးမည်းမို့ ၊ ပတ်ကုံးဆို့မှ ၊ ဘယ်သို့ဘယ်ညာ ၊ ကြည့်ရာရာဝယ် ၊ ဪ … သံသရာစက် ၊ ဘုံသာရပ်၌ ၊ သတ္တစဉ်လာ ၊ ဓမ္မတာကြောင့် ၊ ကေသာသွယ်ဆန်း ၊ နွယ်နတ်ပန်းကို ၊ ရည်မှန်းမသင့် ၊ ရှုချင့်မိ၍ ၊ ပတ်ဆင့်ရံခါ ၊ သွန်းယွန်းလှာသည် ….
+ကြမ္မာမျက်လည် သီသောကြောင့် …။
+
+ထွဋ်နန်းဆိုင်တွင် …. စံခိုင်ပျံ့လှစ် ၊ သည်းညှာရစ်သို့ ၊ ပြိုလစ်လိလိ ၊ လွမ်းဘွယ်တိကို ၊ ရှင်ပင်လည်းသိ ၊ မယ်လည်းသိကား ၊ ခညွှတ်များစွာ ၊ သိကြားပင်မျှ ၊ နှုန်းအင်ပြိုင်ဆွယ် ၊ မမျှဖွယ်ဟု ၊ ဆွတ်ဖွယ်ခဲခက် ၊ ထိုညရက်ကို ၊ နှစ်,သက်မက ၊ ကြုံပါရလည်း ၊ မျှင်စပြန်ခြည် ၊ မည်မျှသည်လည်း ၊ ရှိစေရင်မှာ ၊ လွမ်းတိုင်းနာသည် …. မှောင်သာညဉ့်ယံ မြည်သောကြောင့် ...။
+
+ဆွတ်လှမ်းပိုင်ချင် …. အောက်မေ့လျှင်လည်း ၊ နှောင်းမြင်ခြိမ့်‌လေး ၊ ရိပ်ရိပ်ဆွေး၍ ၊ လွမ်းတေးဆည်းဆာ ၊ ပျိုနုလာလျက် ၊ ဆုံလှာလှည့်ဝိုက် ၊ ရင်ကိုရိုက်သို့ ၊ ဖိုလှိုက်ထစ်ချုန်း ၊ မိုးနယ်လုံးနှင့် ၊ ဖြိုးသွန်းလှပ်လှပ် ၊ ရိုက်လာခတ်သို့ ၊ ကြင်သက်မခြား ၊ ဆွေဖုရားကို ၊ စကားသံလှာ ၊ နှုတ်ရွှေမှာသည် ..
+သဒ္ဒါရွှေပြည် ညီသောကြောင့် ..။
+                    </div>
+
+                    <!-- Footer Royal Stamp -->
+                    <div class="text-center mt-4 pt-3 border-top border-warning-subtle">
+                        <small style="color: var(--ruby-red); font-weight: bold; letter-spacing: 1px;">
+                            ❖ မေတ္တာတံဆိပ်တော်ခတ်နှိပ်၍ ဆက်သသည် ❖
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="d-flex flex-wrap gap-2 justify-content-center mb-4 no-print" id="actionBar" style="display: none !important;">
+                    <button class="btn btn-royal" onclick="copyLovePoem()">
+                        <i class="fa-solid fa-copy me-1"></i> ကဗျာကူးယူမည်
+                    </button>
+                    <button class="btn btn-royal-outline" onclick="printManuscript()">
+                        <i class="fa-solid fa-print me-1"></i> ပေလွှာထုတ်ယူမည်
+                    </button>
+                    <button class="btn btn-royal-outline" onclick="scrollToEditor()">
+                        <i class="fa-solid fa-pen-nib me-1"></i> စာလွှာအသစ်ရေးမည်
+                    </button>
+                </div>
+            </div>
+
+            <!-- Customizer / Editor Column -->
+            <div class="col-lg-5 col-md-12 no-print" id="editorColumn">
+                <div class="editor-card">
+                    <h4 class="text-center mb-3" style="color: var(--royal-gold); font-family: 'Padauk', serif;">
+                        <i class="fa-solid fa-feather me-2"></i>အချစ်လွှာ ပြုပြင်ရေးသားရန်
+                    </h4>
+                    <p class="small text-center opacity-75 mb-4">
+                        သင်၏ ချစ်သူမင်းသမီးလေးထံ ဆက်သချင်သော စာသားနှင့် ကဗျာများကို ဤနေရာတွင် တိုက်ရိုက် ရေးသားနိုင်ပါသည်။
+                    </p>
+
+                    <div class="mb-3">
+                        <label for="inputSalutation"><i class="fa-solid fa-crown me-1"></i> နှုတ်ခွန်းဆက် စာသား (Salutation)</label>
+                        <input type="text" class="form-control form-control-royal" id="inputSalutation" value="မြတ်နိုးရပါသော နန်းမြင့်ဧကရီ မင်းသမီးလေးထံသို့..." oninput="updateLoveLetter()">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputPoem"><i class="fa-solid fa-scroll me-1"></i> အချစ်ကဗျာ / စာလွှာ (Poem Body)</label>
+                        <textarea class="form-control form-control-royal" id="inputPoem" rows="12" oninput="updateLoveLetter()">ဇွန်ပန်းခိုင်ယဉ် …..နန်းညာတင်က ၊ မြသွင်ခြယ်မှုန်း ၊ ဘဝဂ်လုံးသို့ ၊ လွမ်းဖုံးမည်းမို့ ၊ ပတ်ကုံးဆို့မှ ၊ ဘယ်သို့ဘယ်ညာ ၊ ကြည့်ရာရာဝယ် ၊ ဪ … သံသရာစက် ၊ ဘုံသာရပ်၌ ၊ သတ္တစဉ်လာ ၊ ဓမ္မတာကြောင့် ၊ ကေသာသွယ်ဆန်း ၊ နွယ်နတ်ပန်းကို ၊ ရည်မှန်းမသင့် ၊ ရှုချင့်မိ၍ ၊ ပတ်ဆင့်ရံခါ ၊ သွန်းယွန်းလှာသည် ….
+ကြမ္မာမျက်လည် သီသောကြောင့် …။
+
+ထွဋ်နန်းဆိုင်တွင် …. စံခိုင်ပျံ့လှစ် ၊ သည်းညှာရစ်သို့ ၊ ပြိုလစ်လိလိ ၊ လွမ်းဘွယ်တိကို ၊ ရှင်ပင်လည်းသိ ၊ မယ်လည်းသိကား ၊ ခညွှတ်များစွာ ၊ သိကြားပင်မျှ ၊ နှုန်းအင်ပြိုင်ဆွယ် ၊ မမျှဖွယ်ဟု ၊ ဆွတ်ဖွယ်ခဲခက် ၊ ထိုညရက်ကို ၊ နှစ်,သက်မက ၊ ကြုံပါရလည်း ၊ မျှင်စပြန်ခြည် ၊ မည်မျှသည်လည်း ၊ ရှိစေရင်မှာ ၊ လွမ်းတိုင်းနာသည် …. မှောင်သာညဉ့်ယံ မြည်သောကြောင့် ...။
+
+ဆွတ်လှမ်းပိုင်ချင် …. အောက်မေ့လျှင်လည်း ၊ နှောင်းမြင်ခြိမ့်‌လေး ၊ ရိပ်ရိပ်ဆွေး၍ ၊ လွမ်းတေးဆည်းဆာ ၊ ပျိုနုလာလျက် ၊ ဆုံလှာလှည့်ဝိုက် ၊ ရင်ကိုရိုက်သို့ ၊ ဖိုလှိုက်ထစ်ချုန်း ၊ မိုးနယ်လုံးနှင့် ၊ ဖြိုးသွန်းလှပ်လှပ် ၊ ရိုက်လာခတ်သို့ ၊ ကြင်သက်မခြား ၊ ဆွေဖုရားကို ၊ စကားသံလှာ ၊ နှုတ်ရွှေမှာသည် ..
+သဒ္ဒါရွှေပြည် ညီသောကြောင့် ..။</textarea>
+                    </div>
+
+                    <!-- Preset Romantic Love Poems -->
+                    <div class="mb-3">
+                        <label class="d-block mb-2"><i class="fa-solid fa-heart me-1"></i> နန်းသုံး အချစ်ကဗျာ နမူနာများ</label>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-sm btn-royal-outline text-start" onclick="loadLovePreset(1)">
+                                👑 ၁။ သင်ပေးပို့သော နန်းသုံး ၃ပိုဒ်ခွန်း ရတုလွှာ
+                            </button>
+                            <button class="btn btn-sm btn-royal-outline text-start" onclick="loadLovePreset(2)">
+                                🌹 ၂။ စန္ဒာလမင်းနှင့် တုနှိုင်းသူ
+                            </button>
+                            <button class="btn btn-sm btn-royal-outline text-start" onclick="loadLovePreset(3)">
+                                💖 ၃။ ပါရမီဖြည့်ဖက် ထာဝရအချစ်လွှာ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="royal-footer no-print">
+            <div class="kanote-divider">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+            <p>© 2026 ရှေးဟောင်း နန်းသုံးအချစ်လွှာ | Crafted for Royal Love & Romance</p>
+        </footer>
+
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container">
+        <div id="royalToast" class="toast toast-royal" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body d-flex align-items-center justify-content-between">
+                <span id="toastMessage"><i class="fa-solid fa-heart me-2"></i> စာသားများကို ကူးယူပြီးပါပြီ။</span>
+                <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Unveil Envelope
+        function unveilScroll() {
+            const env = document.getElementById('envelopeSection');
+            const scroll = document.getElementById('manuscriptScroll');
+            const actionBar = document.getElementById('actionBar');
+
+            env.style.opacity = '0';
+            setTimeout(() => {
+                env.style.display = 'none';
+                scroll.classList.add('active');
+                actionBar.style.setProperty('display', 'flex', 'important');
+            }, 400);
+
+            // Play gentle sound effect if tone.js ready
+            playRomanticNote();
+        }
+
+        // Dynamic Text Update
+        function updateLoveLetter() {
+            const salutation = document.getElementById('inputSalutation').value;
+            const poem = document.getElementById('inputPoem').value;
+
+            document.getElementById('displaySalutation').innerText = salutation || 'မြတ်နိုးရပါသော မင်းသမီးထံသို့...';
+            document.getElementById('displayPoem').innerText = poem || 'အချစ်ကဗျာ ရေးသားပါ...';
+        }
+
+        // Copy Function
+        function copyLovePoem() {
+            const salutation = document.getElementById('displaySalutation').innerText;
+            const poem = document.getElementById('displayPoem').innerText;
+            const fullText = salutation + "\n\n" + poem;
+
+            const temp = document.createElement("textarea");
+            temp.value = fullText;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+
+            showToast("မင်းသမီးထံ ဆက်သသည့် အချစ်လွှာကို ကူးယူပြီးပါပြီ။");
+        }
+
+        // Print
+        function printManuscript() {
+            window.print();
+        }
+
+        function scrollToEditor() {
+            document.getElementById('editorColumn').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Toast Helper
+        function showToast(msg) {
+            document.getElementById('toastMessage').innerHTML = `<i class="fa-solid fa-heart me-2"></i> ${msg}`;
+            const toastEl = document.getElementById('royalToast');
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+
+        // Preset Love Poems
+        function loadLovePreset(id) {
+            if (id === 1) {
+                document.getElementById('inputSalutation').value = "မြတ်နိုးရပါသော နန်းမြင့်ဧကရီ မင်းသမီးလေးထံသို့...";
+                document.getElementById('inputPoem').value = `ဇွန်ပန်းခိုင်ယဉ် …..နန်းညာတင်က ၊ မြသွင်ခြယ်မှုန်း ၊ ဘဝဂ်လုံးသို့ ၊ လွမ်းဖုံးမည်းမို့ ၊ ပတ်ကုံးဆို့မှ ၊ ဘယ်သို့ဘယ်ညာ ၊ ကြည့်ရာရာဝယ် ၊ ဪ … သံသရာစက် ၊ ဘုံသာရပ်၌ ၊ သတ္တစဉ်လာ ၊ ဓမ္မတာကြောင့် ၊ ကေသာသွယ်ဆန်း ၊ နွယ်နတ်ပန်းကို ၊ ရည်မှန်းမသင့် ၊ ရှုချင့်မိ၍ ၊ ပတ်ဆင့်ရံခါ ၊ သွန်းယွန်းလှာသည် ….
+ကြမ္မာမျက်လည် သီသောကြောင့် …။
+
+ထွဋ်နန်းဆိုင်တွင် …. စံခိုင်ပျံ့လှစ် ၊ သည်းညှာရစ်သို့ ၊ ပြိုလစ်လိလိ ၊ လွမ်းဘွယ်တိကို ၊ ရှင်ပင်လည်းသိ ၊ မယ်လည်းသိကား ၊ ခညွှတ်များစွာ ၊ သိကြားပင်မျှ ၊ နှုန်းအင်ပြိုင်ဆွယ် ၊ မမျှဖွယ်ဟု ၊ ဆွတ်ဖွယ်ခဲခက် ၊ ထိုညရက်ကို ၊ နှစ်,သက်မက ၊ ကြုံပါရလည်း ၊ မျှင်စပြန်ခြည် ၊ မည်မျှသည်လည်း ၊ ရှိစေရင်မှာ ၊ လွမ်းတိုင်းနာသည် …. မှောင်သာညဉ့်ယံ မြည်သောကြောင့် ...။
+
+ဆွတ်လှမ်းပိုင်ချင် …. အောက်မေ့လျှင်လည်း ၊ နှောင်းမြင်ခြိမ့်‌လေး ၊ ရိပ်ရိပ်ဆွေး၍ ၊ လွမ်းတေးဆည်းဆာ ၊ ပျိုနုလာလျက် ၊ ဆုံလှာလှည့်ဝိုက် ၊ ရင်ကိုရိုက်သို့ ၊ ဖိုလှိုက်ထစ်ချုန်း ၊ မိုးနယ်လုံးနှင့် ၊ ဖြိုးသွန်းလှပ်လှပ် ၊ ရိုက်လာခတ်သို့ ၊ ကြင်သက်မခြား ၊ ဆွေဖုရားကို ၊ စကားသံလှာ ၊ နှုတ်ရွှေမှာသည် ..
+သဒ္ဒါရွှေပြည် ညီသောကြောင့် ..။`;
+            } else if (id === 2) {
+                document.getElementById('inputSalutation').value = "ရင်ထဲက တစ်ဦးတည်းသော ပန်းသဇင်လေးထံ...";
+                document.getElementById('inputPoem').value = `ရွှေနန်းတော် ထက်မှာ ပွင့်သော
+သဇင်နွဲ့ ရနံ့အလား...
+မင်းသမီးလေး၏ ချိုသာသော အသံတော်သည်
+မောပန်းသမျှကို ငြိမ်းအေးစေပါ၏။
+
+ကြယ်ရောင်စုံ ခြံရံသည့်တိုင်
+လမင်းတစ်စင်းတည်းကိုသာ မျှော်ကြည့်သကဲ့သို့
+ကိုယ်တော်၏ ရင်ထဲ၌လည်း
+မင်းသမီးတစ်ဦးတည်းသာ ထာဝရ ရှိနေပါမည်။`;
+            } else if (id === 3) {
+                document.getElementById('inputSalutation').value = "သက်ဆုံးတိုင် ပါရမီဖြည့်ဖက် မင်းသမီးလေးထံသို့...";
+                document.getElementById('inputPoem').value = `ရှေးရေစက် အကြောင်းဆက်၍
+ဆုံတွေ့ခဲ့ရသော ချစ်သူမင်းသမီးလေး၊
+
+ဘဝဆက်တိုင်း ဆက်တိုင်း၌လည်း
+ဤသို့ပင် ပါရမီဖြည့်ဖက်အဖြစ်
+နီးစပ်ခွင့် ရပါစေကြောင်း...
+
+ရွှေနန်းတော်ကြီး၏ သက်သေဖြင့်
+ထာဝရ အချစ်ကတိသစ္စာ ဆက်သအပ်ပါသည်။`;
+            }
+
+            updateLoveLetter();
+            showToast("နန်းသုံးအချစ်ကဗျာ ပြောင်းလဲပြီးပါပြီ။");
+        }
+
+        // Ambient Music Synthesizer (Tone.js)
+        let isPlaying = false;
+        let synth = null;
+        let loop = null;
+
+        function toggleMusic() {
+            const btn = document.getElementById('musicToggle');
+            if (!isPlaying) {
+                Tone.start();
+                synth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "triangle" },
+                    envelope: { attack: 0.8, decay: 1.5, sustain: 0.6, release: 2 }
+                }).toDestination();
+                synth.volume.value = -12;
+
+                const notes = ["C4", "E4", "G4", "B4", "A4", "E4", "G4", "D4"];
+                let index = 0;
+
+                loop = new Tone.Loop(time => {
+                    synth.triggerAttackRelease(notes[index % notes.length], "2n", time);
+                    index++;
+                }, "1n").start(0);
+
+                Tone.Transport.start();
+                isPlaying = true;
+                btn.classList.add('playing');
+                showToast("နန်းသုံး တေးသံသာ နားဆင်နေပါပြီ...");
+            } else {
+                Tone.Transport.stop();
+                if(loop) loop.dispose();
+                isPlaying = false;
+                btn.classList.remove('playing');
+                showToast("တေးသံသာ ခေတ္တရပ်တန့်လိုက်ပါသည်။");
+            }
+        }
+
+        function playRomanticNote() {
+            try {
+                Tone.start();
+                const tempSynth = new Tone.Synth({
+                    envelope: { attack: 0.2, release: 1.5 }
+                }).toDestination();
+                tempSynth.volume.value = -10;
+                tempSynth.triggerAttackRelease("G4", "1n");
+            } catch(e) {}
+        }
+
+        // Canvas Particles Animation
+        window.onload = function() {
+            const canvas = document.getElementById('particles-js');
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const particles = [];
+            const particleCount = 45;
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2.2 + 0.6,
+                    color: '#d4af37',
+                    opacity: Math.random() * 0.7 + 0.3,
+                    speedY: Math.random() * -0.4 - 0.1,
+                    speedX: Math.random() * 0.3 - 0.15
+                });
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = '#ffd700';
+                    ctx.fill();
+
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+
+                    if (p.y < 0) {
+                        p.y = canvas.height;
+                        p.x = Math.random() * canvas.width;
+                    }
+                    if (p.x < 0 || p.x > canvas.width) {
+                        p.x = Math.random() * canvas.width;
+                    }
+                });
+
+                requestAnimationFrame(animateParticles);
+            }
+
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
